@@ -2,40 +2,66 @@
 #include <stdio.h>
 #include <string.h>
 #include <time.h>
-#include "helper.h"
+#include "helper.c" // Am modificat: am pus "helper.c" in loc de "helper.h" (nu imi compila cu .h)
 
-void menu()
+// functie care afiseaza meniul principal
+void uiMenu()
 {
-    int s;
-    printf("Choices :\n1.Enter password\n2.View passwords\n3.Erase data\n4.Generate password\n");
-    scanf("%d", &s);
-    switch(s)
+    bool loop = true;
+    int numberOfTries = 3; // numarul de incercari pentru a introduce parola
+    while (loop)
     {
+        printf("### Welcome to the password manager! ###\nSelect an option:\n1. Enter password to log in\n2. Exit\n####################\nChoose an option: ");
+        int option;
+        scanf("%d", &option);
+        switch (option)
+        {
         case 1:
-            add_password();
+        {
+            char s[256], parola[256];
+            printf("Enter password: ");
+            scanf("%256s", s);
+            FILE *f = fopen("parola", "r");
+            fscanf(f, "%256s", parola);
+            fclose(f);
+            if (strcmp(s, parola) == 0)
+            {
+                menu();
+                return;
+            }
+            else
+            {
+                numberOfTries--;
+                if (!numberOfTries)
+                {
+                    printf("You have exceeded the number of tries! Goodbye!\n");
+                    loop = false;
+                }
+            }
             break;
+        }
         case 2:
-            decrypt();
+        {
+            printf("Goodbye!\nProgram has exited successfully!\n");
+            loop = false;
             break;
-        case 3:
-            erase();
+        }
+        default:
+        {
+            printf("Invalid option! Please try again!\n");
             break;
-        case 4:
-            gen_password();
-            break;
+        }
+        }
+        if (option != 2)
+        {
+            system("pause"); // asteapta apasarea unei taste random pentru a continua
+            system("cls");   // curata consola
+        }
     }
 }
 
 int main(void)
 {
-    char s[256], parola[256];
-    printf("Enter password :");
-    scanf("%256s", s);
-    FILE *f = fopen("parola", "r");
-    fscanf(f,"%256s", parola);
-    fclose(f);
-    if(strcmp(s,parola) == 0)
-        menu();
-
+    uiMenu();
     return 0;
 }

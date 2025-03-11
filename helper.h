@@ -11,4 +11,6 @@ void decrypt();
 
 void gen_password();
 
+void menu(); // functie care afiseaza meniul de dupa logare
+
 #endif
