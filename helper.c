@@ -5,9 +5,29 @@
 #include "helper.h"
 #include <stdbool.h> // Am adaugat pentru a folosi bool
 
+void clean_buffer()
+{
+    char c;
+    while ((c = getchar()) != EOF && c != '\n');
+}
+
+#ifdef _WIN32
+void clean_console()
+{
+    system("cls");
+}
+#endif
+#ifdef __linux__
+void clean_console()
+{
+    system("clear");
+}
+#endif
+
 void add_password()
 {
-    system("cls"); // curata consola
+    // system("cls"); // curata consola
+    clean_console();
     char password[256], site[50];
     printf("Enter the password: ");
     scanf("%256s", password);
@@ -39,7 +59,8 @@ void encrypt(char password[])
 
 void erase()
 {
-    system("cls"); // curata consola
+    // system("cls"); // curata consola
+    void clean_console();
     FILE *f = fopen("baza_date", "w");
     fclose(f);
     printf("Data has been erased successfully!\n");
@@ -47,7 +68,8 @@ void erase()
 
 void decrypt()
 {
-    system("cls"); // curata consola
+    // system("cls"); // curata consola
+    void clean_console();
     printf("Here are your passwords (password - site): \n");
     char password[280] = "", encrypt[] = "&*jnkl(!.,)", output[280] = "", site[50], t[2];
     FILE *f = fopen("baza_date", "r");
@@ -73,7 +95,8 @@ void decrypt()
 
 void gen_password()
 {
-    system("cls"); // curata consola
+    // system("cls"); // curata consola
+    void clean_console();
     srand(time(NULL));
     int min = 8, max = 16, length;
     length = rand() % (max - min + 1) + min;
@@ -92,7 +115,8 @@ void gen_password()
 // functie care afiseaza meniul dupa ce te-ai autentificat
 void menu()
 {
-    system("cls");
+    // system("cls");
+    void clean_console();
     int option;
     bool loop = true;
     while (loop)
@@ -123,8 +147,9 @@ void menu()
         }
         if (option != 5)
         {
-            system("pause"); // asteapta apasarea unei taste random pentru a continua
-            system("cls");   // curata consola
+            // system("pause"); // asteapta apasarea unei taste random pentru a continua
+            // system("cls");   // curata consola
+            void clean_console();
         }
     }
 }

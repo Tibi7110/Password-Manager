@@ -54,8 +54,8 @@ void uiMenu()
         }
         if (option != 2)
         {
-            system("pause"); // asteapta apasarea unei taste random pentru a continua
-            system("cls");   // curata consola
+            // system("pause"); // asteapta apasarea unei taste random pentru a continua
+            clean_console();   // curata consola
         }
     }
 }

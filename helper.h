@@ -13,4 +13,8 @@ void gen_password();
 
 void menu(); // functie care afiseaza meniul de dupa logare
 
+void clean_buffer();
+
+void clean_console();
+
 #endif
