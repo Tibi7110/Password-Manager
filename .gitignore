@@ -1,3 +1,5 @@
-test
-proiect.exe
-proiect
+# Ignore executables
+*.exe
+
+# Ignore vscode settings
+.vscode
