@@ -12,3 +12,4 @@ Technologies used:
   - File handling
   - Basic encryption for password security
 
+
