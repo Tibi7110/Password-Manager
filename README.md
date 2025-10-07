@@ -1,6 +1,6 @@
 <p align="center">Password-Manager</p>
 
-#**This is a command-line interface (CLI) application written in C for securely managing and storing passwords.**
+**This is a command-line interface (CLI) application written in C for securely managing and storing passwords.**
 
 Features:
 
@@ -14,6 +14,7 @@ Technologies used:
   - File handling
   - Basic encryption for password security
   - macros
+
 
 
 
